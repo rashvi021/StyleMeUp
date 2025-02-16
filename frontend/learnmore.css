@@ -1,0 +1,188 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(54, 8, 56);
+}
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+header h1 {
+    margin: 0;
+    color: rgb(54, 8, 56);
+}
+.fitting-section, .fitting-section2, .fitting-section3, .fitting-section4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.fitting-area {
+    flex: 1;
+    text-align: center;
+}
+.fitting-section .fitting-area img {
+
+    max-width: 600px;
+    height: 500px;
+   
+}
+.features {
+    flex: 1;
+    padding: 20px;
+}
+.fitting-section .features h3 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 50px;
+}
+.fitting-section .features p {
+    margin-bottom: 10px;
+    color: #ffffff;
+    line-height: 1.6;
+}
+.fitting-section2 .features h3 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 50px;
+}
+.fitting-section2 .features p {
+    margin-bottom: 10px;
+    color: #ffffff;
+    line-height: 1.6;
+}
+.fitting-section3 .features h3 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 50px;
+}
+.fitting-section3 .features p {
+    margin-bottom: 10px;
+    color: #ffffff;
+    line-height: 1.6;
+}
+.fitting-section4 .features h3 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 50px;
+}
+.fitting-section4 .features p {
+    margin-bottom: 10px;
+    color: #ffffff;
+    line-height: 1.6;
+}
+.fitting-section2, .fitting-section4 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.fitting-area{
+    flex: 1;
+    text-align: center;
+}
+.fitting-section2 .fitting-area img {
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.fitting-section3 .fitting-area img {
+    max-width: 600px;
+    height: 500px;
+   
+}
+.fitting-section4 .fitting-area img {
+    max-width: 700px;
+    height: 300px;
+   
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.fitting-section .fitting-area .animation{
+    
+    opacity: 0; /* Hidden initially */
+    transform: translateY(50px); /* Start slightly below */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.fitting-section .fitting-area .animation.visible{
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to original position */
+    animation: fadeIn 2s ease-in-out, bounce 1s infinite ease-in-out;
+}
+
+.fitting-section2 .fitting-area .animation{
+    
+    opacity: 0; /* Hidden initially */
+    transform: translateY(50px); /* Start slightly below */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.fitting-section2 .fitting-area .animation.visible{
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to original position */
+    animation: fadeIn 2s ease-in-out, bounce 1s infinite ease-in-out;
+}
+
+.fitting-section3 .fitting-area .animation{
+    
+    opacity: 0; /* Hidden initially */
+    transform: translateY(50px); /* Start slightly below */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.fitting-section3 .fitting-area .animation.visible{
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to original position */
+    animation: fadeIn 2s ease-in-out, bounce 1s infinite ease-in-out;
+}
+.fitting-section4 .fitting-area .animation{
+    
+    opacity: 0; /* Hidden initially */
+    transform: translateY(50px); /* Start slightly below */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.fitting-section4 .fitting-area .animation.visible{
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to original position */
+    animation: fadeIn 2s ease-in-out, bounce 1s infinite ease-in-out;
+}
+.features {
+    flex: 1;
+    padding: 20px;
+}
+.features h3 {
+    margin-top: 0;
+    color: #444;
+}
+.features p {
+    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.6;
+}
+footer {
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+footer p {
+    margin: 0;
+    color: #777;
+}

@@ -1,0 +1,174 @@
+/* General Styles */
+body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.6;
+    color: #333;
+    background-color: rgb(54, 8, 56);
+  }
+  
+  header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header .logo  {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(54, 8, 56);
+  }
+  
+  header h1 {
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 0;
+  }
+  
+  header .sorting {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    font-weight: bolder;
+  }
+  
+  header .sorting select {
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* Main Content */
+  .main-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0px;
+    flex: 2;
+   
+  
+  }
+
+  
+  .product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: rgb(235, 233, 233);;
+    margin: 10px;
+  }
+  
+  .product-card img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition */
+  }
+  
+  .product-card:hover img {
+    transform: scale(1.2); /* Zoom in by 20% */
+  }
+  
+  .product-card p {
+    margin: 10px 0;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  .product-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .product-card .try-button,
+  .product-card .cart-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  .product-card .try-button {
+    background-color: rgb(54, 8, 56);
+    color: #fff;
+  }
+  
+  .product-card .cart-button {
+    background-color: rgb(145, 15, 150);
+    color: #fff;
+  }
+  
+  /* Try-On Section */
+  .tryon-container {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .tryon-container h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+  
+  .tryon-container .preview {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .tryon-container .preview img {
+    max-width: 100%;
+    border-radius: 8px;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+  }
+  
+  .tryon-container .options button {
+    margin: 10px 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  .tryon-container .options button:first-child {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .tryon-container .options button:last-child {
+    background-color: #ffc107;
+    color: #000;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+  }
+  

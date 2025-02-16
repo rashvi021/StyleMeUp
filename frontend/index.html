@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleMeUp- A virtual try on</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">StyleMeUp</div>
+        <nav>
+            <a href="#home">Home</a>
+            <div class="menu-item">
+                <a href="#photos">Explore</a>
+                <ul class="dropdown">
+                    <li><a href="#clothing">Clothing</a></li>
+                    <li><a href="#footwear">Footwear</a></li>
+                    <li><a href="#accessories">Accessories</a></li>
+                    <li><a href="#beauty">Beauty</a></li>
+                </ul>
+            </div>
+            <a href="page1.html">Try-On</a>
+            <a href="#videos">Cart</a>
+            <a href="#contact">Sign In</a>
+        </nav>
+    </header>
+
+    
+</div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <video src="images/VID_20250113012615.mp4"autoplay loop muted></video>
+            <h1>Experience Virtual Try-On</h1>
+            <p>Revolutionize the way you shop with advanced virtual try-on technology.</p>
+           
+            <a href="learnmore.html" class="cta-btn">Learn More</a>
+
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        
+
+        <h2>Features</h2>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <div class="photos">
+                    <img src="images/1 - Copy.jpg" alt="">
+                </div>
+                <h3>Real-Time Try-On</h3>
+                
+                <p>Preview how products look on you instantly, users can upload their images to "try-on" clothes,
+                    This gives them an idea of how the product might look without physically trying it on.
+                </p>
+            </div>
+         </divdiv>
+            <div class="feature">
+                <div class="photos">
+                    <img src="images/13.png" alt="">
+                </div>
+                <h3>Mix & Match</h3>
+                <p>Enable users to combine different items to create complete outfits, this time instead of wondering would this shirt go with that pant? you can simply visualize it.</p>
+            </div>
+            <div class="feature">
+                <div class="photos">
+                    <img src="images/InShot_20250116_025340206.jpg" alt="">
+                </div>
+                <h3>Interactive Experience</h3>
+                <p>Users can move around, adjust angles, and zoom in on the vrtual product to inspect how it fits and looks from different perspectives./p>
+            </div>
+        </div>
+    </section>
+
+    <section id="photos" class="media-section">
+        <h2>How to make your model?</h2>
+        <!--<h3 class="typing-text">1. Enter your body measurements. <br> 2.Choose hairstyle and skintone. <br> 3.Choose the apparel. <br> 4.Your model is ready. <h3>
+            <h3 class="typing-text"><h3>
+                <h3 class="typing-text"><h3>
+                    <h3 class="typing-text"><h3>-->
+
+                        <div class="upload-container">
+                            <h2>Upload Your Image</h2>
+                            <input type="file" id="imageUpload" accept="image/*">
+                            <div id="preview"></div>
+                        </div>
+                        
+    </section>
+
+    <section id="videos" class="media-section">
+        <h2>Videos</h2>
+        <div class="video-gallery">
+            <video controls>
+                <source src="video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video controls>
+                <source src="video2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Add more videos as needed -->
+        </div>
+    </section>
+
+    <section id="categories">
+        <h2>Categories</h2>
+        <ul id="categoriesList">
+            <!-- Categories will be dynamically inserted here -->
+        </ul>
+    </section>
+    <section id="orders">
+        <h2>Orders</h2>
+        <ul id="ordersList">
+            <!-- Orders will be dynamically inserted here -->
+        </ul>
+    </section>
+
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 All rights reserved.</p>
+            <div class="social-media">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,256 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color:rgb(156, 81, 232);
+    color: #000000;
+}
+
+
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(54, 8, 56);
+}
+nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+nav a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+header nav a {
+    margin: 30 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #007bff;
+}
+.menu-item {
+    position: relative;
+}
+
+.menu-item .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+}
+
+.menu-item .dropdown li a {
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+}
+
+.menu-item .dropdown li a:hover {
+    background-color: #f4f4f4;
+}
+
+.menu-item:hover .dropdown {
+    display: block;
+}
+
+/* Hero Section */
+/*.video_bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#bg-video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+  
+
+}*/
+.hero {
+    
+    color:white;
+    text-align: center;
+    padding: 80px 20px;
+}
+.hero-content video{
+    position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the video covers the entire screen */
+      z-index: -1; /* Places the video behind the text */
+
+}
+
+.hero-content h1 {
+    margin-top: 300px;
+    font-size: 50px;
+    
+}
+
+.hero-content p {
+    font-size: 30px;
+    margin: 10px 0 20px;
+}
+
+.cta-btn {
+    padding: 20px 50px;
+    background-color: white;
+    font-size: medium;
+    color: rgb(54, 8, 56);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    position: relative;
+    top: 20px; /* Moves the button 20px down */
+}
+
+
+
+.cta-btn:hover {
+    background-color: rgb(54, 8, 56);
+    color: white;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 20px;
+    background-color: rgb(54, 8, 56);
+    text-align: center;
+    position: relative;
+}
+
+.features h2{
+    margin-top: 0px;
+    color:  rgb(54, 8, 56);
+    font-size: 40px;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.photos img{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+.feature h3{
+    color:  rgb(54, 8, 56);
+    font-size: 25px;
+
+}
+
+.features-grid {
+    color:  rgb(54, 8, 56);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.feature:hover{
+    transform: scale(1.05); /* Slight zoom-in effect */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Add stronger shadow */
+}
+
+.feature {
+    padding: 20px;
+    background: white
+    ;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Section */
+
+  
+.media-section {
+    padding: 40px 20px;
+    background-color: rgb(235, 233, 233);
+    padding: 60px 20px;
+}
+.media-section img:hover{
+    transform: scale(1.05); /* Slight zoom-in effect */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Add stronger shadow */
+}
+.media-section h2{
+    color:  rgb(54, 8, 56);
+    font-size: 40px;
+    text-align: center;
+}
+.media-section h3{
+    text-align: center;
+}
+.photo-gallery, .video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 20px;
+    background-color:rgb(54, 8, 56);
+}
+
+.photo-gallery img, .video-gallery video {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer .social-media a {
+    margin: 0 5px;
+    color: #007bff;
+    font-size: 16px;
+}
+
+footer .social-media a:hover {
+    color: #0056b3;
+}
