@@ -9,10 +9,10 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    richDescription: {
-        type: String,
-        default: ''
-    },
+    // richDescription: {
+    //     type: String,
+    //     default: ''
+    // },
     image: {
         type: String,
         default: ''

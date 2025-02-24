@@ -13,6 +13,7 @@ app.options('*', cors())
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
+app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 
 //Routes
 const categoriesRoutes = require('./routes/categories');

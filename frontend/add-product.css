@@ -1,0 +1,39 @@
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 60px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    text-align: center;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #b59cbd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #946894;
+}
+
+#message {
+    text-align: center;
+    margin-top: 10px;
+}

@@ -22,7 +22,7 @@
                     <li><a href="#beauty">Beauty</a></li>
                 </ul>
             </div>
-            <a href="page1.html">Try-On</a>
+            <a href="display-products.html">Try-On</a>
             <a href="#videos">Cart</a>
             <a href="#contact">Sign In</a>
         </nav>
@@ -74,20 +74,77 @@
             </div>
         </div>
     </section>
-
     <section id="photos" class="media-section">
-        <h2>How to make your model?</h2>
-        <!--<h3 class="typing-text">1. Enter your body measurements. <br> 2.Choose hairstyle and skintone. <br> 3.Choose the apparel. <br> 4.Your model is ready. <h3>
-            <h3 class="typing-text"><h3>
-                <h3 class="typing-text"><h3>
-                    <h3 class="typing-text"><h3>-->
-
-                        <div class="upload-container">
-                            <h2>Upload Your Image</h2>
-                            <input type="file" id="imageUpload" accept="image/*">
-                            <div id="preview"></div>
-                        </div>
-                        
+        <h2>How to Make Your Model?</h2>
+        <p>Follow these steps to create your virtual model:</p>
+    
+        <div class="steps-container">
+            <div class="step">1.Find a clear background.</div>
+            <div class="step">2.Stand Straight and Comfortably.</div>
+            <div class="step">3.Click your full body picture.</div>
+            <div class="step">4.Upload your image</div>
+        </div>
+    
+        <div class="upload-container">
+            <h3>📸 Upload Your Image</h3>
+            
+            <!-- Drag and Drop File Upload -->
+            <div id="drop-area">
+                <p>Drag & Drop an image or</p>
+                <label for="imageUpload" class="custom-file-upload">
+                    📂 Choose File
+                </label>
+                <input type="file" id="imageUpload" accept="image/*" hidden>
+            </div>
+    
+            <!-- Image Preview -->
+            <div id="preview-container">
+                <h4>Preview:</h4>
+                <img id="imagePreview" src="" alt="Your uploaded image will appear here.">
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Drag & Drop Feature + Live Preview
+        const dropArea = document.getElementById("drop-area");
+        const fileInput = document.getElementById("imageUpload");
+        const preview = document.getElementById("imagePreview");
+    
+        fileInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            previewImage(file);
+        });
+    
+        dropArea.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            dropArea.classList.add("highlight");
+        });
+    
+        dropArea.addEventListener("dragleave", () => {
+            dropArea.classList.remove("highlight");
+        });
+    
+        dropArea.addEventListener("drop", (event) => {
+            event.preventDefault();
+            dropArea.classList.remove("highlight");
+    
+            const file = event.dataTransfer.files[0];
+            fileInput.files = event.dataTransfer.files;
+            previewImage(file);
+        });
+    
+        function previewImage(file) {
+            if (file) {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    preview.src = reader.result;
+                };
+            }
+        }
+    </script>
+             
     </section>
 
     <section id="videos" class="media-section">
