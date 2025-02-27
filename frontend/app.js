@@ -18,3 +18,17 @@ function fetchCategories() {
 document.addEventListener('DOMContentLoaded', () => {
     fetchCategories();
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("token");
+    const authLink = document.getElementById("auth-link");
+
+    if (authLink) {
+        if (token) {
+            authLink.textContent = "My Account";
+            authLink.href = "account.html"; // Redirect to profile page
+        } else {
+            authLink.textContent = "Sign In";
+            authLink.href = "login.html";
+        }
+    }
+});
