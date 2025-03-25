@@ -93,5 +93,30 @@ router.delete("/:userId/:productId",  async (req, res) => {
         res.status(500).json({ error: "Failed to remove item" });
     }
 });
+// ✅ Update quantity in the cart
+router.put("/:userId/:productId", async (req, res) => {
+    const { userId, productId } = req.params;
+    const { quantity } = req.body;
+
+    try {
+        let cart = await Cart.findOne({ userId });
+
+        if (!cart) {
+            return res.status(404).json({ error: "Cart not found" });
+        }
+
+        const item = cart.items.find((item) => item.productId.toString() === productId);
+        if (!item) {
+            return res.status(404).json({ error: "Item not found in cart" });
+        }
+
+        item.quantity = quantity;
+        await cart.save();
+
+        res.json({ message: "Quantity updated", cart });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to update item quantity" });
+    }
+});
 
 module.exports = router;

@@ -118,5 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+
+
+
     fetchCartItems();
 });

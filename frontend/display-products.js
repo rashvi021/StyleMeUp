@@ -105,7 +105,7 @@ async function addToCart(productId, name, price) {
     }
 
     try {
-        const response = await fetch("http://localhost:3000/api/v1/cart/", {
+        const response = await fetch("http://localhost:3000/api/v1/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

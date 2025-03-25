@@ -60,6 +60,7 @@ const cors = require('cors');
 const axios = require('axios'); // ✅ Import axios
 require('dotenv/config');
 
+
 app.use(cors());
 app.options('*', cors());
 
@@ -74,6 +75,7 @@ const categoriesRoutes = require('./routes/categories');
 const productsRoutes = require('./routes/products');
 const usersRoutes = require('./routes/users');
 const ordersRoutes = require('./routes/orders');
+const cartRoutes = require('./routes/cart');
 
 const api = process.env.API_URL;
 
@@ -81,6 +83,9 @@ app.use(`${api}/categories`, categoriesRoutes);
 app.use(`${api}/products`, productsRoutes);
 app.use(`${api}/users`, usersRoutes);
 app.use(`${api}/orders`, ordersRoutes);
+
+app.use(`${api}/cart`, cartRoutes);
+
 
 // ✅ Add Virtual Try-On Route Below
 const UNITY_SERVER_URL = "http://localhost:5001"; // Unity server URL
