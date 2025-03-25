@@ -13,17 +13,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // ✅ Decode JWT to extract userId
+    function getUserIdFromToken(token) {
+        try {
+            const payload = JSON.parse(atob(token.split(".")[1])); // Decode JWT
+            return payload.userId; // Extract userId
+        } catch (error) {
+            console.error("Error decoding token:", error);
+            return null;
+        }
+    }
+
     // ✅ Check if user is logged in and update navbar
     function updateAuthLink() {
         const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
 
         if (authLink) {
-            if (token) {
+            if (token && userId) {
                 authLink.textContent = "My Account";
-                authLink.href = "account.html"; // Redirect to My Account page
+                authLink.href = "account.html";
             } else {
                 authLink.textContent = "Sign In";
-                authLink.href = "login.html"; // Redirect to Login page
+                authLink.href = "login.html";
             }
         }
     }
@@ -33,66 +45,73 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Login Function
     document.querySelector("#login-form button").addEventListener("click", async function (event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
 
         const email = document.querySelector("#login-form input[type='text']").value;
         const password = document.querySelector("#login-form input[type='password']").value;
 
-        const response = await fetch("http://localhost:3000/api/v1/users/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        let data;
         try {
-            data = await response.json();
-        } catch (error) {
-            alert("Unexpected response: " + await response.text());
-            return;
-        }
+            const response = await fetch("http://localhost:3000/api/v1/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
 
-        if (response.ok) {
-            alert("Login Successful!");
-            localStorage.setItem("token", data.token); // Store token
-            updateAuthLink(); // Update navbar
-            window.location.href = "index.html"; // Redirect
-        } else {
-            alert(data.message || "Login Failed. Check your credentials.");
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem("token", data.token);
+
+                // ✅ Extract userId from the token
+                const userId = getUserIdFromToken(data.token);
+                if (userId) {
+                    localStorage.setItem("userId", userId);
+                } else {
+                    console.warn("userId not found in token.");
+                }
+
+                alert("Login Successful!");
+                updateAuthLink();
+                window.location.href = "index.html";
+            } else {
+                alert(data.message || "Login Failed. Check your credentials.");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("Something went wrong. Please try again.");
         }
     });
 
     // ✅ Signup Function
     document.querySelector("#signup-form button").addEventListener("click", async function (event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
 
         const name = document.querySelector("#signup-form input[type='text']").value;
         const email = document.querySelector("#signup-form input[type='email']").value;
         const password = document.querySelector("#signup-form input[type='password']").value;
 
-        const response = await fetch("http://localhost:3000/api/v1/users", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email, password }),
-        });
-
-        let data;
         try {
-            data = await response.json();
-        } catch (error) {
-            alert("Unexpected response: " + await response.text());
-            return;
-        }
+            const response = await fetch("http://localhost:3000/api/v1/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, email, password }),
+            });
 
-        if (response.ok) {
-            alert("Signup Successful! Please log in.");
-            toggleForms(); // Switch to login form
-        } else {
-            alert(data.message || "Signup Failed.");
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Signup Successful! Please log in.");
+                toggleForms();
+            } else {
+                alert(data.message || "Signup Failed.");
+            }
+        } catch (error) {
+            console.error("Error during signup:", error);
+            alert("Something went wrong. Please try again.");
         }
     });
 
