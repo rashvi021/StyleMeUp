@@ -23,9 +23,10 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         
-      const fileName = file.originalname.split(' ').join('-');
-      const extension = FILE_TYPE_MAP[file.mimetype];
-      cb(null, `${fileName}-${Date.now()}.${extension}`)
+        const extension = file.originalname.split('.').pop(); // Keep original extension
+        const fileName = file.originalname.split(' ').join('-').replace(`.${extension}`, ''); // Remove existing extension
+        cb(null, `${fileName}-${Date.now()}.${extension}`);
+        
     }
   })
   
@@ -63,12 +64,12 @@ router.post(`/`, uploadOptions.single('image'), async (req, res) =>{
     if(!file) return res.status(400).send('No image in the request')
 
     const fileName = file.filename
-    const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
+    const basePath = `${req.protocol}://${req.get('host')}/public/uploads`;
     let product = new Product({
         name: req.body.name,
         description: req.body.description,
         richDescription: req.body.richDescription,
-        image: `${basePath}${fileName}`,// "http://localhost:3000/public/upload/image-2323232"
+        image:`/public/uploads/${fileName}`,// "http://localhost:3000/public/upload/image-2323232"
         brand: req.body.brand,
         price: req.body.price,
         category: req.body.category,

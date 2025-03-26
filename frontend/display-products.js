@@ -104,16 +104,21 @@ async function addToCart(productId, name, price) {
         return;
     }
 
+    const payload = { userId, productId, name, price, quantity: 1 };
+    console.log("Sending cart request:", payload); // ✅ Debugging
+
     try {
-        const response = await fetch("http://localhost:3000/api/v1/cart/", {
+        const response = await fetch("http://localhost:3000/api/v1/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ userId, productId, name, price, quantity: 1 })
+            body: JSON.stringify(payload)
         });
 
         const data = await response.json();
+        console.log("Cart API response:", data); // ✅ Debugging
+
         if (response.ok) {
             alert("Product added to cart!");
         } else {

@@ -3,59 +3,60 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalPriceElement = document.getElementById("total-price");
 
     async function fetchCartItems() {
-        const userId = localStorage.getItem("userId"); // Get the logged-in user's ID
+        const userId = localStorage.getItem("userId");
         if (!userId) {
-            console.error("User not logged in");
+            console.error("User ID not found.");
             return;
         }
-
+    
         try {
             const response = await fetch(`http://localhost:3000/api/v1/cart/${userId}`);
             const cart = await response.json();
-            cartContainer.innerHTML = "";
+            console.log("Cart API Response:", cart);
 
-            if (!cart.items || cart.items.length === 0) {
+            cartContainer.innerHTML = "";
+    
+            if (!cart || !cart.items || cart.items.length === 0) {
                 cartContainer.innerHTML = "<p>Your cart is empty.</p>";
                 return;
             }
 
             let totalPrice = 0;
-
+    
             cart.items.forEach(item => {
-                totalPrice += item.productId.price * item.quantity;
+                if (!item.name || !item.price) {
+                    console.warn("Skipping item with missing details:", item);
+                    return;
+                }
 
-                const cartItem = document.createElement("div");
-                cartItem.classList.add("cart-item");
-
-                cartItem.innerHTML = `
-                    <img src="${item.productId.image}" alt="${item.productId.name}">
-                    <div class="item-details">
-                        <h2>${item.productId.name}</h2>
-                        <p>Price: $${item.productId.price.toFixed(2)}</p>
-                        <div class="quantity">
-                            <button class="decrease" data-id="${item.productId._id}">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="increase" data-id="${item.productId._id}">+</button>
-                        </div>
-                    </div>
-                    <button class="remove" data-id="${item.productId._id}">Remove</button>
+                totalPrice += item.price * item.quantity;
+    
+                const itemElement = document.createElement("div");
+                itemElement.classList.add("cart-item");
+                itemElement.innerHTML = `
+                    <p><strong>${item.name}</strong> - $${item.price} (Qty: <span id="qty-${item.productId}">${item.quantity}</span>)</p>
+                    <button class="decrease" data-id="${item.productId}">-</button>
+                    <button class="increase" data-id="${item.productId}">+</button>
+                    <button class="remove" data-id="${item.productId}">Remove</button>
                 `;
-
-                cartContainer.appendChild(cartItem);
+                cartContainer.appendChild(itemElement);
             });
 
-            totalPriceElement.textContent = totalPrice.toFixed(2);
+            totalPriceElement.innerText = totalPrice.toFixed(2);
             addEventListeners();
+
         } catch (error) {
             console.error("Error fetching cart:", error);
         }
     }
+    
+    fetchCartItems();
 
     function addEventListeners() {
         document.querySelectorAll(".increase").forEach(button => {
             button.addEventListener("click", () => {
                 const productId = button.getAttribute("data-id");
-                const quantityElement = button.previousElementSibling;
+                const quantityElement = document.getElementById(`qty-${productId}`);
                 const newQuantity = parseInt(quantityElement.textContent) + 1;
                 updateQuantity(productId, newQuantity);
             });
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".decrease").forEach(button => {
             button.addEventListener("click", () => {
                 const productId = button.getAttribute("data-id");
-                const quantityElement = button.nextElementSibling;
+                const quantityElement = document.getElementById(`qty-${productId}`);
                 const newQuantity = Math.max(1, parseInt(quantityElement.textContent) - 1);
                 updateQuantity(productId, newQuantity);
             });
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw new Error("Failed to update quantity");
             }
 
-            fetchCartItems(); // Refresh cart after update
+            fetchCartItems();
         } catch (error) {
             console.error(error);
         }
@@ -112,11 +113,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw new Error("Failed to remove item");
             }
 
-            fetchCartItems(); // Refresh cart after removal
+            fetchCartItems();
         } catch (error) {
             console.error(error);
         }
     }
-
-    fetchCartItems();
 });
