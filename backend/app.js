@@ -77,6 +77,7 @@ const usersRoutes = require('./routes/users');
 const ordersRoutes = require('./routes/orders');
 const cartRoutes = require('./routes/cart');
 
+
 const api = process.env.API_URL;
 
 app.use(`${api}/categories`, categoriesRoutes);
@@ -85,6 +86,10 @@ app.use(`${api}/users`, usersRoutes);
 app.use(`${api}/orders`, ordersRoutes);
 
 app.use(`${api}/cart`, cartRoutes);
+
+
+
+
 
 
 // ✅ Add Virtual Try-On Route Below
