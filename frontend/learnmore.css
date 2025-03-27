@@ -14,6 +14,12 @@ header h1 {
     margin: 0;
     color: rgb(54, 8, 56);
 }
+
+header a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Keeps text color same as h1 */
+}
+
 .fitting-section, .fitting-section2, .fitting-section3, .fitting-section4 {
     display: flex;
     flex-direction: row;
