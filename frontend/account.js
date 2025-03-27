@@ -25,7 +25,7 @@ async function updateUser(event) {
 
     try {
         const response = await fetch('/api/v1/users/update', {
-            method: "PUT",s
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: newName, email: newEmail }),
         });

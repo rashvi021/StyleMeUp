@@ -30,3 +30,14 @@ button {
 button:hover {
     background: rgb(54, 8, 56);
 }
+
+a{
+    padding: 10px;
+    background: rgb(54, 8, 56);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+a:hover{
+    background: rgb(75, 11, 77);
+}
