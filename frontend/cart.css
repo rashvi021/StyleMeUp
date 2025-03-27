@@ -83,7 +83,7 @@ body {
     margin-top: 20px;
 }
 
-.checkout {
+#try-on-btn{
     background: rgb(98, 62, 92);
     color: white;
     border: none;
@@ -92,7 +92,7 @@ body {
     border-radius: 5px;
     font-size: 16px;
 }
-.checkout:hover{
+#try-on-btn:hover{
     background: rgb(143, 97, 135);
     color: white;
 }

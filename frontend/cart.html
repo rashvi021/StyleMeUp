@@ -14,15 +14,15 @@
     
     <div class="cart-container">
         <h1>Shopping Cart</h1>
-        <!-- ✅ Changed div ID to match JavaScript selection -->
         <div class="cart-items"></div> 
 
         <div class="cart-summary">
             <h2>Total: $<span id="total-price">0.00</span></h2>
-            <button class="checkout">Proceed to Try-On</button>
+            <!-- ✅ Changed class to ID for better JavaScript selection -->
+            <button id="try-on-btn">Proceed to Try-On</button>
         </div>
     </div>
 
-    <script src="cart.js"></script> <!-- ✅ Moved script to the bottom -->
+    <script src="cart.js"></script> <!-- ✅ Script at bottom for better loading -->
 </body>
 </html>

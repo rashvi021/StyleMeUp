@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const cartContainer = document.querySelector(".cart-items");
     const totalPriceElement = document.getElementById("total-price");
+    const tryOnButton = document.getElementById("try-on-btn");
 
     async function fetchCartItems() {
         const userId = localStorage.getItem("userId");
@@ -8,21 +9,20 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("User ID not found.");
             return;
         }
-    
+
         try {
             const response = await fetch(`http://localhost:3000/api/v1/cart/${userId}`);
             const cart = await response.json();
-            console.log("Cart API Response:", cart);
 
             cartContainer.innerHTML = "";
-    
             if (!cart || !cart.items || cart.items.length === 0) {
                 cartContainer.innerHTML = "<p>Your cart is empty.</p>";
                 return;
             }
 
             let totalPrice = 0;
-    
+            let outfitIds = []; // ✅ Store outfit IDs
+
             cart.items.forEach(item => {
                 if (!item.name || !item.price) {
                     console.warn("Skipping item with missing details:", item);
@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 totalPrice += item.price * item.quantity;
-    
+                outfitIds.push(item.productId); // ✅ Collect outfit IDs
+
                 const itemElement = document.createElement("div");
                 itemElement.classList.add("cart-item");
                 itemElement.innerHTML = `
@@ -43,13 +44,16 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             totalPriceElement.innerText = totalPrice.toFixed(2);
-            addEventListeners();
 
+            tryOnButton.dataset.userId = userId;  // ✅ Attach userId to button
+            tryOnButton.dataset.outfitIds = JSON.stringify(outfitIds); // ✅ Store outfit IDs
+
+            addEventListeners();
         } catch (error) {
             console.error("Error fetching cart:", error);
         }
     }
-    
+
     fetchCartItems();
 
     function addEventListeners() {
@@ -76,6 +80,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 const productId = button.getAttribute("data-id");
                 removeItem(productId);
             });
+        });
+
+        // ✅ Add event listener to Try-On Button
+        document.getElementById("try-on-btn").addEventListener("click", () => {
+            const userId = tryOnButton.dataset.userId;
+            const outfitIds = JSON.parse(tryOnButton.dataset.outfitIds);
+
+            if (!userId || outfitIds.length === 0) {
+                alert("No outfits selected for try-on.");
+                return;
+            }
+
+            sendTryOnRequest(userId, outfitIds);
         });
     }
 
@@ -116,6 +133,30 @@ document.addEventListener("DOMContentLoaded", function () {
             fetchCartItems();
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    // ✅ Function to send Try-On request
+    async function sendTryOnRequest(userId, outfitIds) {
+        try {
+            const response = await fetch("http://localhost:3000/try-on", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId, outfitIds }),
+            });
+
+            const data = await response.json();
+            console.log("Try-On Response:", data);
+
+            if (data.error) {
+                alert("Error in virtual try-on: " + data.error);
+            } else {
+                alert("Try-on started successfully!");
+            }
+        } catch (error) {
+            console.error("Error sending try-on request:", error);
         }
     }
 });
